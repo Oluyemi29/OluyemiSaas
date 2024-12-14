@@ -42,7 +42,7 @@ export const createSubscription = async () => {
   }
   const SubscriptionUrl = await getStripeSession({
     customerId: dbUser.stringCustomerId as string,
-    domainUrl: "http://localhost:3000",
+    domainUrl: "https://oluyemi-saas.vercel.app",
     priceId: process.env.PRICE_ID as string,
   });
   return redirect(SubscriptionUrl);
@@ -59,7 +59,7 @@ export const createCustomerPortal = async () => {
   const stringCustomerId = user?.stringCustomerId as string;
   const session = await stripe.billingPortal.sessions.create({
     customer: stringCustomerId,
-    return_url: "http://localhost:3000/dashboard",
+    return_url: "https://oluyemi-saas.vercel.app/dashboard",
   });
   return redirect(session.url);
 };
